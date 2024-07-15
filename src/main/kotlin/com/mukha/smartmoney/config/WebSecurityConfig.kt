@@ -38,8 +38,12 @@ class WebSecurityConfig {
     @Throws(Exception::class)
     fun securityFilterChain(http: HttpSecurity, customUserDetailsService: CustomUserDetailsService): SecurityFilterChain {
         http
-            .csrf().disable()
-            .cors().disable()
+            .csrf {
+                it.disable()
+            }
+            .cors {
+                it.disable()
+            }
             .authorizeHttpRequests { requests ->
                 requests
                     .requestMatchers(*whitelist.toTypedArray()).permitAll()
